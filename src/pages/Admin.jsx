@@ -1,14 +1,33 @@
 import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
-import { Settings, Plus, Edit, Trash2, Home as HomeIcon, LogOut, Check, X, Mail } from 'lucide-react';
+import { Settings, Plus, Edit, Trash2, Home as HomeIcon, LogOut, Check, X, Mail, Shield, Key, User, Lock, AlertTriangle, Smartphone } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { QRCodeSVG as QRCode } from 'qrcode.react';
 
 const Admin = () => {
-  const { themes, addTheme, updateTheme, deleteTheme, settings, updateSettings, isAuthenticated, login, logout, requests, deleteRequest } = useStore();
+  const { 
+    themes, addTheme, updateTheme, deleteTheme, 
+    settings, updateSettings, 
+    adminCredentials, updateCredentials,
+    isAuthenticated, is2FAVerified, login, verify2FA, secretLogin, logout, 
+    requests, deleteRequest 
+  } = useStore();
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [secretKeyInput, setSecretKeyInput] = useState('');
+  const [twoFactorCode, setTwoFactorCode] = useState('');
+  const [loginStep, setLoginStep] = useState('login'); // 'login', '2fa', 'secret'
   const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState('requests'); // default to requests if someone wants to check inbox
+  const [activeTab, setActiveTab] = useState('requests');
   const navigate = useNavigate();
+
+  // Security Settings State
+  const [securitySettings, setSecuritySettings] = useState({
+    username: adminCredentials.username,
+    password: adminCredentials.password,
+    secretKey: adminCredentials.secretKey,
+    is2FAEnabled: adminCredentials.is2FAEnabled
+  });
 
   // Settings State
   const [siteSettings, setSiteSettings] = useState(settings);
@@ -21,21 +40,55 @@ const Admin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (login(password)) {
+    const result = login(username, password);
+    if (result.success) {
+      if (result.needs2FA) {
+        setLoginStep('2fa');
+        setError('');
+      } else {
+        setError('');
+      }
+    } else {
+      setError('Invalid username or password');
+    }
+  };
+
+  const handle2FAVerify = (e) => {
+    e.preventDefault();
+    if (verify2FA(twoFactorCode)) {
       setError('');
     } else {
-      setError('Invalid password');
+      setError('Invalid 2FA code');
+    }
+  };
+
+  const handleSecretLogin = (e) => {
+    e.preventDefault();
+    if (secretLogin(secretKeyInput)) {
+      setError('');
+    } else {
+      setError('Invalid secret key');
     }
   };
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    setLoginStep('login');
+    setUsername('');
+    setPassword('');
+    setTwoFactorCode('');
+    setSecretKeyInput('');
+    navigate('/admin');
   };
 
   const saveSettings = () => {
     updateSettings(siteSettings);
     alert('Settings saved!');
+  };
+
+  const saveSecuritySettings = () => {
+    updateCredentials(securitySettings);
+    alert('Security settings updated successfully!');
   };
 
   const openAddForm = () => {
@@ -69,22 +122,112 @@ const Admin = () => {
 
   if (!isAuthenticated) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: 'var(--bg-dark)' }}>
-        <div className="glass-panel" style={{ padding: '40px', width: '100%', maxWidth: '400px', textAlign: 'center' }}>
-          <Settings size={48} color="var(--accent-primary)" style={{ marginBottom: '24px' }} />
-          <h2 style={{ marginBottom: '24px' }}>Admin Login</h2>
-          {error && <p style={{ color: 'var(--accent-secondary)', marginBottom: '16px' }}>{error}</p>}
-          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <input 
-              type="password" 
-              placeholder="Enter admin password (admin123)"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ padding: '12px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
-            />
-            <button type="submit" className="btn-primary" style={{ justifyContent: 'center' }}>Login</button>
-            <Link to="/" style={{ marginTop: '16px', color: 'var(--text-secondary)' }}>Go back to site</Link>
-          </form>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: 'var(--bg-dark)', padding: '20px' }}>
+        <div className="glass-panel" style={{ padding: '40px', width: '100%', maxWidth: '450px', textAlign: 'center' }}>
+          
+          {loginStep === 'login' && (
+            <>
+              <Shield size={48} color="var(--accent-primary)" style={{ marginBottom: '24px' }} />
+              <h2 style={{ marginBottom: '8px' }}>Admin Access</h2>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', fontSize: '0.9rem' }}>Enter your credentials to manage the platform</p>
+              
+              {error && <div style={{ background: 'rgba(236,72,153,0.1)', border: '1px solid rgba(236,72,153,0.2)', color: '#ec4899', padding: '12px', borderRadius: '8px', marginBottom: '20px', fontSize: '0.9rem' }}>{error}</div>}
+              
+              <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ position: 'relative' }}>
+                  <User size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
+                  <input 
+                    type="text" 
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
+                  />
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <Lock size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
+                  <input 
+                    type="password" 
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
+                  />
+                </div>
+                <button type="submit" className="btn-primary" style={{ justifyContent: 'center', padding: '14px' }}>Authorize Session</button>
+                
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '10px 0' }}>
+                  <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></div>
+                  <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>OR</span>
+                  <div style={{ flex: 1, height: '1px', background: 'var(--border-color)' }}></div>
+                </div>
+
+                <button type="button" onClick={() => setLoginStep('secret')} style={{ color: 'var(--accent-primary)', fontSize: '0.9rem', background: 'none', border: 'none', cursor: 'pointer' }}>
+                  Login with Secret Key
+                </button>
+              </form>
+            </>
+          )}
+
+          {loginStep === '2fa' && (
+            <>
+              <Smartphone size={48} color="var(--accent-primary)" style={{ marginBottom: '24px' }} />
+              <h2 style={{ marginBottom: '8px' }}>Two-Factor Authentication</h2>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', fontSize: '0.9rem' }}>Enter the 6-digit code from your authenticator app</p>
+              
+              {error && <div style={{ background: 'rgba(236,72,153,0.1)', border: '1px solid rgba(236,72,153,0.2)', color: '#ec4899', padding: '12px', borderRadius: '8px', marginBottom: '20px', fontSize: '0.9rem' }}>{error}</div>}
+              
+              <form onSubmit={handle2FAVerify} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <input 
+                  type="text" 
+                  placeholder="000000"
+                  value={twoFactorCode}
+                  onChange={(e) => setTwoFactorCode(e.target.value.replace(/\D/g, '').substring(0, 6))}
+                  required
+                  autoFocus
+                  style={{ width: '100%', padding: '16px', fontSize: '1.5rem', letterSpacing: '8px', textAlign: 'center', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
+                />
+                <button type="submit" className="btn-primary" style={{ justifyContent: 'center', padding: '14px' }}>Verify & Enter</button>
+                <button type="button" onClick={() => setLoginStep('login')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', background: 'none', border: 'none', cursor: 'pointer', marginTop: '10px' }}>
+                  Back to Login
+                </button>
+              </form>
+            </>
+          )}
+
+          {loginStep === 'secret' && (
+            <>
+              <Key size={48} color="var(--accent-primary)" style={{ marginBottom: '24px' }} />
+              <h2 style={{ marginBottom: '8px' }}>Master Key Access</h2>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', fontSize: '0.9rem' }}>Enter your emergency bypass secret key</p>
+              
+              {error && <div style={{ background: 'rgba(236,72,153,0.1)', border: '1px solid rgba(236,72,153,0.2)', color: '#ec4899', padding: '12px', borderRadius: '8px', marginBottom: '20px', fontSize: '0.9rem' }}>{error}</div>}
+              
+              <form onSubmit={handleSecretLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ position: 'relative' }}>
+                  <Key size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
+                  <input 
+                    type="password" 
+                    placeholder="Secret Admin Key"
+                    value={secretKeyInput}
+                    onChange={(e) => setSecretKeyInput(e.target.value)}
+                    required
+                    style={{ width: '100%', padding: '12px 12px 12px 40px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
+                  />
+                </div>
+                <button type="submit" className="btn-primary" style={{ justifyContent: 'center', padding: '14px' }}>Unlock Dashboard</button>
+                <button type="button" onClick={() => setLoginStep('login')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', background: 'none', border: 'none', cursor: 'pointer', marginTop: '10px' }}>
+                  Back to Standard Login
+                </button>
+              </form>
+            </>
+          )}
+
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '30px', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            <HomeIcon size={14} /> Back to Homepage
+          </Link>
         </div>
       </div>
     );
@@ -119,6 +262,13 @@ const Admin = () => {
             style={{ width: '100%', justifyContent: 'flex-start', border: activeTab === 'settings' ? '1px solid var(--accent-primary)' : '' }}
           >
             <Settings size={18} /> Site Settings
+          </button>
+          <button 
+            onClick={() => setActiveTab('security')} 
+            className={`btn-outline ${activeTab === 'security' ? 'active' : ''}`}
+            style={{ width: '100%', justifyContent: 'flex-start', border: activeTab === 'security' ? '1px solid var(--accent-primary)' : '' }}
+          >
+            <Shield size={18} /> Security
           </button>
         </nav>
         <div style={{ marginTop: 'auto', paddingTop: '40px' }}>
@@ -166,9 +316,124 @@ const Admin = () => {
           </div>
         )}
 
+        {activeTab === 'security' && (
+          <div className="glass-panel" style={{ padding: '32px', maxWidth: '800px', margin: '0 auto' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+              <Shield size={24} color="var(--accent-primary)" />
+              <h2 style={{ margin: 0 }}>Security & Authentication</h2>
+            </div>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              {/* Primary Credentials */}
+              <section>
+                <h3 style={{ fontSize: '1.1rem', marginBottom: '20px', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px' }}>Login Credentials</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)' }}>Admin Username</label>
+                    <input 
+                      type="text" 
+                      value={securitySettings.username} 
+                      onChange={(e) => setSecuritySettings({...securitySettings, username: e.target.value})}
+                      style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)' }}>Admin Password</label>
+                    <input 
+                      type="password" 
+                      value={securitySettings.password} 
+                      onChange={(e) => setSecuritySettings({...securitySettings, password: e.target.value})}
+                      style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'white' }}
+                    />
+                  </div>
+                </div>
+              </section>
+
+              {/* Secret Key Bypass */}
+              <section>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                  <Key size={18} color="var(--accent-secondary)" />
+                  <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Emergency Master Key</h3>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '16px' }}>This key allows you to bypass 2FA and standard login in case of emergency. Keep it safe!</p>
+                <div style={{ position: 'relative' }}>
+                  <input 
+                    type="text" 
+                    value={securitySettings.secretKey} 
+                    onChange={(e) => setSecuritySettings({...securitySettings, secretKey: e.target.value})}
+                    style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'rgba(0,0,0,0.5)', color: 'var(--accent-secondary)', fontWeight: 'bold' }}
+                  />
+                </div>
+              </section>
+
+              {/* Two-Factor Authentication */}
+              <section style={{ background: 'rgba(0,0,0,0.2)', padding: '24px', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    <Smartphone size={24} color={securitySettings.is2FAEnabled ? 'var(--accent-primary)' : 'var(--text-secondary)'} />
+                    <div>
+                      <h3 style={{ fontSize: '1.1rem', margin: 0 }}>Google Authenticator (2FA)</h3>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '4px' }}>Add an extra layer of security to your account.</p>
+                    </div>
+                  </div>
+                  <label className="switch" style={{ position: 'relative', display: 'inline-block', width: '50px', height: '24px' }}>
+                    <input 
+                      type="checkbox" 
+                      checked={securitySettings.is2FAEnabled}
+                      onChange={(e) => setSecuritySettings({...securitySettings, is2FAEnabled: e.target.checked})}
+                      style={{ opacity: 0, width: 0, height: 0 }}
+                    />
+                    <span style={{ 
+                      position: 'absolute', cursor: 'pointer', top: 0, left: 0, right: 0, bottom: 0, 
+                      backgroundColor: securitySettings.is2FAEnabled ? 'var(--accent-primary)' : '#444', 
+                      borderRadius: '24px', transition: '0.4s' 
+                    }}>
+                      <span style={{ 
+                        position: 'absolute', content: '""', height: '18px', width: '18px', left: securitySettings.is2FAEnabled ? '28px' : '4px', bottom: '3px', 
+                        backgroundColor: 'white', borderRadius: '50%', transition: '0.4s' 
+                      }}></span>
+                    </span>
+                  </label>
+                </div>
+
+                {securitySettings.is2FAEnabled && (
+                  <div style={{ display: 'flex', gap: '24px', padding: '20px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', alignItems: 'center' }}>
+                    <div style={{ padding: '12px', background: 'white', borderRadius: '8px', width: '120px', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: '100%', height: '100%', background: 'white' }}>
+                        <QRCode value={`otpauth://totp/Admin?secret=${adminCredentials.twoFactorSecret}&issuer=EliteThemes`} size={120} />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 style={{ color: 'white', marginBottom: '8px' }}>Setup Instructions</h4>
+                      <ol style={{ paddingLeft: '20px', color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        <li>Install Google Authenticator on your phone</li>
+                        <li>Scan the QR code or enter the secret manually</li>
+                        <li>Secret: <code style={{ color: 'var(--accent-primary)', background: 'rgba(0,0,0,0.3)', padding: '2px 6px', borderRadius: '4px' }}>{adminCredentials.twoFactorSecret}</code></li>
+                        <li>Verification 2FA code is: <code style={{ color: 'var(--accent-primary)' }}>{adminCredentials.twoFactorSecret.substring(0, 6)}</code></li>
+                      </ol>
+                      <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '6px', color: '#fbbf24', fontSize: '0.8rem' }}>
+                        <AlertTriangle size={14} />
+                        <span>Save this secret. You won't be able to see it again after saving.</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </section>
+
+              <button className="btn-primary" onClick={saveSecuritySettings} style={{ padding: '14px 28px' }}>
+                <Check size={18} /> Update Security Profile
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Previous tabs logic... */}
         {activeTab === 'settings' && (
           <div className="glass-panel" style={{ padding: '32px', maxWidth: '800px', margin: '0 auto' }}>
-            <h2 style={{ marginBottom: '24px' }}>Global Site Settings</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+              <Settings size={24} color="var(--accent-primary)" />
+              <h2 style={{ margin: 0 }}>Global Site Settings</h2>
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '8px', color: 'var(--text-secondary)' }}>Site Title</label>
