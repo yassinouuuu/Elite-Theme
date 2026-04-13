@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { authenticator } from 'otplib';
+import { TOTP } from 'otplib';
+const authenticator = new TOTP();
 const StoreContext = createContext();
 
 const defaultThemes = [
@@ -175,7 +176,7 @@ export const StoreProvider = ({ children }) => {
 
   const verify2FA = (code) => {
     try {
-      const isValid = authenticator.check(code, adminCredentials.twoFactorSecret);
+      const isValid = authenticator.verifySync({ token: code, secret: adminCredentials.twoFactorSecret });
       
       if (isValid || code === '123456') { // Keeping fallback for emergency testing
         setIsAuthenticated(true);
