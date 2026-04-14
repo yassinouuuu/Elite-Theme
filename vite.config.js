@@ -13,4 +13,16 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    // SEO: Generate clean HTML for crawlers
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    // Enable CSS code splitting for faster FCP
+    cssCodeSplit: true,
+    // Inline small assets for reduced HTTP requests
+    assetsInlineLimit: 4096,
+  },
 })

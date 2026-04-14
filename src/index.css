@@ -331,6 +331,28 @@ a {
   color: var(--text-secondary);
 }
 
+.footer a:hover {
+  color: var(--accent-primary) !important;
+}
+
+/* Category Links */
+.category-link:hover {
+  background: rgba(129, 140, 248, 0.1) !important;
+  border-color: rgba(129, 140, 248, 0.3) !important;
+  color: var(--text-primary) !important;
+  transform: translateX(4px);
+}
+
+/* Breadcrumb */
+nav[aria-label="Breadcrumb"] a:hover {
+  text-decoration: underline;
+}
+
+/* SEO Content Strong Tags */
+.glass-panel strong {
+  color: var(--text-highlight);
+}
+
 @media (max-width: 768px) {
   .themes-grid {
     grid-template-columns: 1fr;

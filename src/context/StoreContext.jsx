@@ -47,9 +47,9 @@ const defaultThemes = [
 
 const defaultSettings = {
   siteTitle: "Elite Theme",
-  heroBadge: "WordPress Architecture & Theme Design",
-  heroTitle: "Premium WordPress Themes Built for <span class='text-gradient'>Conversion & Speed</span>",
-  heroDescription: "Explore my carefully crafted portfolio of high-end, responsive WordPress templates designed for modern e-commerce, sports media, and dropshipping businesses."
+  heroBadge: "⚡ #1 Premium WordPress Theme Marketplace 2026",
+  heroTitle: "Premium <span class='text-gradient'>WordPress Themes</span> Built for Conversion & Speed",
+  heroDescription: "Explore our carefully crafted collection of professional WordPress templates designed for modern WooCommerce stores, e-commerce, sports media, and dropshipping businesses. SEO-optimized, Elementor-ready, and fully responsive."
 };
 
 export const StoreProvider = ({ children }) => {
