@@ -54,12 +54,12 @@ const defaultSettings = {
 
 export const StoreProvider = ({ children }) => {
   const [themes, setThemes] = useState(() => {
-    const saved = localStorage.getItem('portfolioThemes');
+    const saved = localStorage.getItem('themeJungleThemes');
     return saved ? JSON.parse(saved) : defaultThemes;
   });
 
   const [settings, setSettings] = useState(() => {
-    const saved = localStorage.getItem('portfolioSettings');
+    const saved = localStorage.getItem('themeJungleSettings');
     return saved ? JSON.parse(saved) : defaultSettings;
   });
 
@@ -86,11 +86,11 @@ export const StoreProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    localStorage.setItem('portfolioThemes', JSON.stringify(themes));
+    localStorage.setItem('themeJungleThemes', JSON.stringify(themes));
   }, [themes]);
 
   useEffect(() => {
-    localStorage.setItem('portfolioSettings', JSON.stringify(settings));
+    localStorage.setItem('themeJungleSettings', JSON.stringify(settings));
   }, [settings]);
 
   useEffect(() => {

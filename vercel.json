@@ -1,4 +1,5 @@
 {
+  "name": "themejungle",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
