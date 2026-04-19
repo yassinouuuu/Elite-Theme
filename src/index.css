@@ -26,12 +26,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: 
-    linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.85)),
-    url('/user-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 35%),
+    radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08), transparent 35%),
+    linear-gradient(to bottom, var(--bg-dark), #0a0a0f);
   min-height: 100vh;
 }
 
