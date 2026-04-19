@@ -54,8 +54,16 @@ const defaultSettings = {
 
 export const StoreProvider = ({ children }) => {
   const [themes, setThemes] = useState(() => {
-    const saved = localStorage.getItem('themeJungleThemes');
-    return saved ? JSON.parse(saved) : defaultThemes;
+    const savedNew = localStorage.getItem('themeJungleThemes');
+    if (savedNew) return JSON.parse(savedNew);
+    
+    // Data Migration: Recover old themes from previous brand name caching
+    const savedOld = localStorage.getItem('portfolioThemes');
+    if (savedOld) {
+      localStorage.setItem('themeJungleThemes', savedOld);
+      return JSON.parse(savedOld);
+    }
+    return defaultThemes;
   });
 
   const [settings, setSettings] = useState(() => {
