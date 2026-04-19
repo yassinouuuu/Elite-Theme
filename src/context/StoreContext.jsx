@@ -54,15 +54,18 @@ const defaultSettings = {
 
 export const StoreProvider = ({ children }) => {
   const [themes, setThemes] = useState(() => {
-    const savedNew = localStorage.getItem('themeJungleThemes');
-    if (savedNew) return JSON.parse(savedNew);
-    
-    // Data Migration: Recover old themes from previous brand name caching
     const savedOld = localStorage.getItem('portfolioThemes');
-    if (savedOld) {
+    const savedNew = localStorage.getItem('themeJungleThemes');
+    const migrated = localStorage.getItem('themeMigratedV2');
+    
+    // Data Migration: Recover old themes from previous brand name caching reliably
+    if (savedOld && !migrated) {
+      localStorage.setItem('themeMigratedV2', 'true');
       localStorage.setItem('themeJungleThemes', savedOld);
       return JSON.parse(savedOld);
     }
+    
+    if (savedNew) return JSON.parse(savedNew);
     return defaultThemes;
   });
 
