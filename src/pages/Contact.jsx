@@ -40,18 +40,18 @@ const Contact = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Contact Elite Theme – WordPress Theme Support & Custom Development",
-    "description": "Get in touch with Elite Theme for WordPress theme inquiries, custom theme development, support, and business partnerships.",
-    "url": "https://elitetheme.dev/contact",
+    "name": "Contact ThemeJungle – WordPress Theme Support & Custom Development",
+    "description": "Get in touch with ThemeJungle for WordPress theme inquiries, custom theme development, support, and business partnerships.",
+    "url": "https://themejungle.dev/contact",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Elite Theme",
-      "url": "https://elitetheme.dev",
+      "name": "ThemeJungle",
+      "url": "https://themejungle.dev",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
         "availableLanguage": ["English"],
-        "url": "https://elitetheme.dev/contact"
+        "url": "https://themejungle.dev/contact"
       }
     }
   };
@@ -59,9 +59,9 @@ const Contact = () => {
   return (
     <>
       <SEOHead
-        title="Contact Elite Theme – WordPress Theme Support & Custom Theme Development"
-        description="Get in touch with Elite Theme for premium WordPress theme inquiries, custom WooCommerce theme development, Elementor theme support, and business partnerships. We respond within 24 hours."
-        keywords="contact Elite Theme, WordPress theme support, custom WordPress theme development, hire WordPress developer, WordPress theme inquiry, WooCommerce theme developer, Elementor theme customization, WordPress theme help, buy WordPress themes, custom theme request"
+        title="Contact ThemeJungle – WordPress Theme Support & Custom Theme Development"
+        description="Get in touch with ThemeJungle for premium WordPress theme inquiries, custom WooCommerce theme development, Elementor theme support, and business partnerships. We respond within 24 hours."
+        keywords="contact ThemeJungle, WordPress theme support, custom WordPress theme development, hire WordPress developer, WordPress theme inquiry, WooCommerce theme developer, Elementor theme customization, WordPress theme help, buy WordPress themes, custom theme request"
         canonicalPath="/contact"
         jsonLd={jsonLd}
       />
@@ -109,7 +109,7 @@ const Contact = () => {
             <div style={{ padding: '20px', background: 'rgba(0,0,0,0.3)', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'center' }}>
               <Mail size={28} color="var(--accent-primary)" style={{ marginBottom: '12px' }} />
               <h3 style={{ fontSize: '1rem', marginBottom: '4px' }}>Email Us</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>support@elitetheme.dev</p>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>support@themejungle.dev</p>
             </div>
             <div style={{ padding: '20px', background: 'rgba(0,0,0,0.3)', borderRadius: '16px', border: '1px solid var(--border-color)', textAlign: 'center' }}>
               <Clock size={28} color="var(--accent-tertiary)" style={{ marginBottom: '12px' }} />
@@ -188,7 +188,7 @@ const Contact = () => {
           <div style={{ maxWidth: '800px', margin: '40px auto 0', textAlign: 'center' }}>
             <h2 style={{ fontSize: '1.5rem', marginBottom: '16px' }}>WordPress Theme <span className="text-gradient">Services</span></h2>
             <p style={{ color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '0.95rem' }}>
-              At Elite Theme, we offer a full range of <strong>WordPress theme services</strong> including premium theme sales, <strong>custom WordPress theme development</strong>, <strong>WooCommerce store setup</strong>, <strong>Elementor template customization</strong>, theme migration, and ongoing maintenance. Whether you need a ready-made <strong>premium WordPress template</strong> or a fully custom solution, our team delivers professional, SEO-optimized results that drive conversions and growth.
+              At ThemeJungle, we offer a full range of <strong>WordPress theme services</strong> including premium theme sales, <strong>custom WordPress theme development</strong>, <strong>WooCommerce store setup</strong>, <strong>Elementor template customization</strong>, theme migration, and ongoing maintenance. Whether you need a ready-made <strong>premium WordPress template</strong> or a fully custom solution, our team delivers professional, SEO-optimized results that drive conversions and growth.
             </p>
           </div>
         </motion.div>

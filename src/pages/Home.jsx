@@ -63,14 +63,14 @@ const Home = () => {
   const faqs = [
     {
       question: "What are the best premium WordPress themes for 2026?",
-      answer: "The best premium WordPress themes for 2026 focus on performance, responsive design, and SEO optimization. Elite Theme offers cutting-edge themes like UltraStore Premium, featuring WooCommerce integration, Elementor compatibility, and modern glassmorphism aesthetics that deliver exceptional user experiences and high conversion rates."
+      answer: "The best premium WordPress themes for 2026 focus on performance, responsive design, and SEO optimization. ThemeJungle offers cutting-edge themes like UltraStore Premium, featuring WooCommerce integration, Elementor compatibility, and modern glassmorphism aesthetics that deliver exceptional user experiences and high conversion rates."
     },
     {
       question: "Are your WordPress themes compatible with WooCommerce and Elementor?",
       answer: "Yes, all our WordPress themes are fully compatible with WooCommerce for e-commerce functionality and Elementor Pro for drag-and-drop page building. We also support WPML for multilingual sites, Yoast SEO for search optimization, and Contact Form 7 for lead generation."
     },
     {
-      question: "How fast are Elite Theme WordPress templates?",
+      question: "How fast are ThemeJungle WordPress templates?",
       answer: "Our WordPress themes are engineered for maximum speed with lightweight, clean code, optimized assets, lazy loading images, and minimal HTTP requests. They consistently achieve 90+ scores on Google PageSpeed Insights and pass all Core Web Vitals assessments including LCP, FID, and CLS."
     },
     {
@@ -79,7 +79,7 @@ const Home = () => {
     },
     {
       question: "Do your WordPress themes support mobile responsive design?",
-      answer: "All Elite Theme WordPress templates feature fully responsive design that adapts perfectly to any screen size – from ultra-wide desktop monitors to tablets and smartphones. Our mobile-first approach ensures your website provides an optimal user experience across all devices."
+      answer: "All ThemeJungle WordPress templates feature fully responsive design that adapts perfectly to any screen size – from ultra-wide desktop monitors to tablets and smartphones. Our mobile-first approach ensures your website provides an optimal user experience across all devices."
     },
     {
       question: "Are these WordPress themes SEO friendly?",
@@ -101,8 +101,8 @@ const Home = () => {
   return (
     <>
       <SEOHead
-        title="Elite Theme – Premium WordPress Themes & Templates 2026 | Best WooCommerce Themes"
-        description="Discover Elite Theme's collection of premium WordPress themes and templates for 2026. High-performance, responsive WooCommerce themes built for speed, SEO, and conversions. Browse professional WordPress templates today."
+        title="ThemeJungle – Premium WordPress Themes & Templates 2026 | Best WooCommerce Themes"
+        description="Discover ThemeJungle's collection of premium WordPress themes and templates for 2026. High-performance, responsive WooCommerce themes built for speed, SEO, and conversions. Browse professional WordPress templates today."
         keywords="WordPress themes, premium WordPress templates, best WordPress themes 2026, WooCommerce themes, responsive WordPress themes, professional WordPress themes, Elementor themes, e-commerce WordPress themes, dark WordPress themes, modern WordPress templates, buy WordPress themes, custom WordPress themes, fast WordPress themes, SEO optimized WordPress themes, mobile-friendly WordPress themes, GPL WordPress themes, dropshipping themes, business WordPress themes"
         canonicalPath="/"
       />
@@ -115,11 +115,11 @@ const Home = () => {
               <LayoutTemplate size={18} />
               Themes
             </Link>
-            <Link to="/about-us" className="btn-outline" aria-label="Learn about Elite Theme">
+            <Link to="/about-us" className="btn-outline" aria-label="Learn about ThemeJungle">
               <Info size={18} />
               About Us
             </Link>
-            <Link to="/contact" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }} aria-label="Contact Elite Theme">
+            <Link to="/contact" className="btn-primary" style={{ padding: '8px 16px', fontSize: '0.9rem' }} aria-label="Contact ThemeJungle">
               Contact
             </Link>
           </div>
@@ -262,9 +262,9 @@ const Home = () => {
         </section>
 
         {/* Why Choose Section (SEO content) */}
-        <section style={{ padding: '80px 0' }} aria-label="Why choose Elite Theme WordPress templates">
+        <section style={{ padding: '80px 0' }} aria-label="Why choose ThemeJungle WordPress templates">
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Why Choose <span className="text-gradient">Elite Theme</span> WordPress Templates?</h2>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '16px' }}>Why Choose <span className="text-gradient">ThemeJungle</span> WordPress Templates?</h2>
             <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto', fontSize: '1.1rem' }}>
               Every theme is built with cutting-edge technology, clean code architecture, and conversion-focused design to help your WordPress website succeed.
             </p>
@@ -399,21 +399,21 @@ const Home = () => {
         </section>
 
         {/* SEO Content Section (keyword-rich text for search engines) */}
-        <section style={{ padding: '40px 0 80px', borderTop: '1px solid var(--border-color)' }} aria-label="About Elite Theme WordPress templates">
+        <section style={{ padding: '40px 0 80px', borderTop: '1px solid var(--border-color)' }} aria-label="About ThemeJungle WordPress templates">
           <div className="glass-panel" style={{ padding: '48px 40px' }}>
             <h2 style={{ fontSize: '2rem', marginBottom: '24px', textAlign: 'center' }}>Professional <span className="text-gradient">WordPress Themes</span> for Every Business</h2>
             <div style={{ columns: '2 350px', gap: '32px', color: 'var(--text-secondary)', lineHeight: '1.8', fontSize: '0.95rem' }}>
               <p style={{ marginBottom: '16px' }}>
-                Elite Theme is a leading provider of <strong>premium WordPress themes and templates</strong> designed for businesses, agencies, and entrepreneurs in 2026. Our carefully crafted collection includes <strong>WooCommerce themes</strong> for e-commerce, <strong>Elementor-compatible templates</strong> for visual page building, and specialized themes for sports media, dropshipping, and corporate websites.
+                ThemeJungle is a leading provider of <strong>premium WordPress themes and templates</strong> designed for businesses, agencies, and entrepreneurs in 2026. Our carefully crafted collection includes <strong>WooCommerce themes</strong> for e-commerce, <strong>Elementor-compatible templates</strong> for visual page building, and specialized themes for sports media, dropshipping, and corporate websites.
               </p>
               <p style={{ marginBottom: '16px' }}>
                 Each <strong>WordPress theme</strong> in our collection is built with <strong>SEO best practices</strong>, including semantic HTML5 markup, Schema.org structured data, optimized Core Web Vitals, and mobile-first responsive design. Our themes consistently achieve <strong>90+ scores on Google PageSpeed Insights</strong>, ensuring your website ranks higher in search results and delivers exceptional user experiences.
               </p>
               <p style={{ marginBottom: '16px' }}>
-                Whether you're looking for a <strong>responsive WordPress theme</strong> for your online store, a <strong>professional business template</strong> for your corporate site, or a <strong>custom WordPress theme</strong> tailored to your unique requirements, Elite Theme has you covered. All our themes are <strong>GPL licensed</strong>, fully documented, and come with dedicated support.
+                Whether you're looking for a <strong>responsive WordPress theme</strong> for your online store, a <strong>professional business template</strong> for your corporate site, or a <strong>custom WordPress theme</strong> tailored to your unique requirements, ThemeJungle has you covered. All our themes are <strong>GPL licensed</strong>, fully documented, and come with dedicated support.
               </p>
               <p>
-                Our WordPress templates support the latest WordPress versions and are compatible with popular plugins including <strong>WooCommerce, Elementor Pro, WPML, Yoast SEO, Rank Math, Contact Form 7, and WP Super Cache</strong>. Start building your dream website today with Elite Theme's premium collection of <strong>best WordPress themes for 2026</strong>.
+                Our WordPress templates support the latest WordPress versions and are compatible with popular plugins including <strong>WooCommerce, Elementor Pro, WPML, Yoast SEO, Rank Math, Contact Form 7, and WP Super Cache</strong>. Start building your dream website today with ThemeJungle's premium collection of <strong>best WordPress themes for 2026</strong>.
               </p>
             </div>
           </div>

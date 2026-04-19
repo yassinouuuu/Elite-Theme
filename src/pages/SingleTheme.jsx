@@ -82,11 +82,11 @@ const SingleTheme = () => {
     "applicationCategory": "WebApplication",
     "applicationSubCategory": "WordPress Theme",
     "image": theme.image,
-    "url": `https://elitetheme.dev/theme/${theme.id}`,
+    "url": `https://themejungle.dev/theme/${theme.id}`,
     "author": {
       "@type": "Organization",
-      "name": "Elite Theme",
-      "url": "https://elitetheme.dev"
+      "name": "ThemeJungle",
+      "url": "https://themejungle.dev"
     },
     "offers": {
       "@type": "Offer",
@@ -95,7 +95,7 @@ const SingleTheme = () => {
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "Elite Theme"
+        "name": "ThemeJungle"
       }
     },
     "aggregateRating": {
@@ -123,9 +123,9 @@ const SingleTheme = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://elitetheme.dev/" },
-      { "@type": "ListItem", "position": 2, "name": "WordPress Themes", "item": "https://elitetheme.dev/themes" },
-      { "@type": "ListItem", "position": 3, "name": theme.title, "item": `https://elitetheme.dev/theme/${theme.id}` }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://themejungle.dev/" },
+      { "@type": "ListItem", "position": 2, "name": "WordPress Themes", "item": "https://themejungle.dev/themes" },
+      { "@type": "ListItem", "position": 3, "name": theme.title, "item": `https://themejungle.dev/theme/${theme.id}` }
     ]
   };
 

@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://elitetheme.dev/sitemap.xml
+Sitemap: https://themejungle.dev/sitemap.xml
 
 # Allow all major search engine crawlers
 User-agent: Googlebot

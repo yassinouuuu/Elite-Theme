@@ -10,9 +10,9 @@ const defaultThemes = [
     description: "A high-converting, vibrant e-commerce theme with full Elementor compatibility and dark glassmorphism design.",
     price: "$59",
     showPrice: true,
-    image: "/elite.png",
+    image: "/themejungle.png",
     gallery: [
-      "/elite.png",
+      "/themejungle.png",
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&q=80&w=1200"
     ],
@@ -46,8 +46,8 @@ const defaultThemes = [
 ];
 
 const defaultSettings = {
-  siteTitle: "Elite Theme",
-  heroBadge: "⚡ #1 Premium WordPress Theme Marketplace 2026",
+  siteTitle: "ThemeJungle",
+  heroBadge: "⚡ #1 Premium WordPress Theme Marketplace 2026 – ThemeJungle",
   heroTitle: "Premium <span class='text-gradient'>WordPress Themes</span> Built for Conversion & Speed",
   heroDescription: "Explore our carefully crafted collection of professional WordPress templates designed for modern WooCommerce stores, e-commerce, sports media, and dropshipping businesses. SEO-optimized, Elementor-ready, and fully responsive."
 };

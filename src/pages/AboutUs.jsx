@@ -28,14 +28,14 @@ const AboutUs = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About Elite Theme – Premium WordPress Theme Developers",
-    "description": "Learn about Elite Theme, a premier provider of premium WordPress themes and templates for e-commerce, business, and media websites.",
-    "url": "https://elitetheme.dev/about-us",
+    "name": "About ThemeJungle – Premium WordPress Theme Developers",
+    "description": "Learn about ThemeJungle, a premier provider of premium WordPress themes and templates for e-commerce, business, and media websites.",
+    "url": "https://themejungle.dev/about-us",
     "mainEntity": {
       "@type": "Organization",
-      "name": "Elite Theme",
+      "name": "ThemeJungle",
       "description": "Professional WordPress theme development studio specializing in premium, SEO-optimized, conversion-focused themes for WooCommerce, Elementor, and modern web development.",
-      "url": "https://elitetheme.dev",
+      "url": "https://themejungle.dev",
       "foundingDate": "2026",
       "knowsAbout": ["WordPress Theme Development", "WooCommerce", "Elementor", "Web Design", "SEO", "E-commerce"],
       "makesOffer": [
@@ -54,9 +54,9 @@ const AboutUs = () => {
   return (
     <>
       <SEOHead
-        title="About Elite Theme – Premium WordPress Theme Developers & Designers"
-        description="Learn about Elite Theme, a premier WordPress theme development studio creating premium, SEO-optimized, conversion-focused themes. We specialize in WooCommerce themes, Elementor-compatible templates, and custom WordPress development for businesses worldwide."
-        keywords="about Elite Theme, WordPress theme developers, WordPress theme designers, premium WordPress themes company, WooCommerce theme developers, Elementor theme creators, custom WordPress development, professional WordPress templates, WordPress theme studio"
+        title="About ThemeJungle – Premium WordPress Theme Developers & Designers"
+        description="Learn about ThemeJungle, a premier WordPress theme development studio creating premium, SEO-optimized, conversion-focused themes. We specialize in WooCommerce themes, Elementor-compatible templates, and custom WordPress development for businesses worldwide."
+        keywords="about ThemeJungle, WordPress theme developers, WordPress theme designers, premium WordPress themes company, WooCommerce theme developers, Elementor theme creators, custom WordPress development, professional WordPress templates, WordPress theme studio"
         canonicalPath="/about-us"
         jsonLd={jsonLd}
       />
@@ -93,17 +93,17 @@ const AboutUs = () => {
           className="glass-panel" 
           style={{ padding: '60px', maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}
         >
-          <h1 style={{ fontSize: '3rem', marginBottom: '24px' }}>About <span className="text-gradient">Elite Theme</span></h1>
+          <h1 style={{ fontSize: '3rem', marginBottom: '24px' }}>About <span className="text-gradient">ThemeJungle</span></h1>
           <p style={{ fontSize: '1.1rem', color: 'var(--accent-primary)', marginBottom: '16px', fontWeight: 600 }}>
             Premium WordPress Theme Development Studio
           </p>
           
           <div style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: '1.8', marginBottom: '40px', textAlign: 'left', maxWidth: '800px', margin: '0 auto 40px' }}>
             <p style={{ marginBottom: '20px' }}>
-              Welcome to <strong>Elite Theme</strong>, your premier destination for high-end, professionally designed <strong>WordPress themes and templates</strong>. We believe that your website is the digital storefront of your brand, and it deserves nothing less than perfection.
+              Welcome to <strong>ThemeJungle</strong>, your premier destination for high-end, professionally designed <strong>WordPress themes and templates</strong>. We believe that your website is the digital storefront of your brand, and it deserves nothing less than perfection.
             </p>
             <p style={{ marginBottom: '20px' }}>
-              Born from a passion for pixel-perfect design and robust architecture, our mission is to empower creators, agencies, and businesses with <strong>premium WordPress themes</strong> that not only look breathtaking but also drive real, measurable results. Whether you are building an <strong>e-commerce empire with WooCommerce</strong>, a <strong>dropshipping store</strong>, a <strong>corporate business website</strong>, or a <strong>digital media platform</strong>, Elite Theme provides the ultimate foundation.
+              Born from a passion for pixel-perfect design and robust architecture, our mission is to empower creators, agencies, and businesses with <strong>premium WordPress themes</strong> that not only look breathtaking but also drive real, measurable results. Whether you are building an <strong>e-commerce empire with WooCommerce</strong>, a <strong>dropshipping store</strong>, a <strong>corporate business website</strong>, or a <strong>digital media platform</strong>, ThemeJungle provides the ultimate foundation.
             </p>
             <p style={{ marginBottom: '20px' }}>
               Our team specializes in creating <strong>SEO-optimized WordPress templates</strong> with clean, lightweight code that ensures exceptional performance. Every theme in our collection achieves <strong>90+ Google PageSpeed scores</strong>, passes all <strong>Core Web Vitals</strong> assessments, and is built with <strong>semantic HTML5</strong> and <strong>Schema.org structured data</strong> to maximize your search engine visibility.

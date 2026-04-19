@@ -400,7 +400,7 @@ const Admin = () => {
                   <div style={{ display: 'flex', gap: '24px', padding: '20px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', alignItems: 'center' }}>
                     <div style={{ padding: '12px', background: 'white', borderRadius: '8px', width: '120px', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <div style={{ width: '100%', height: '100%', background: 'white' }}>
-                        <QRCode value={`otpauth://totp/Admin?secret=${adminCredentials.twoFactorSecret}&issuer=EliteThemes`} size={120} />
+                        <QRCode value={`otpauth://totp/Admin?secret=${adminCredentials.twoFactorSecret}&issuer=ThemeJungle`} size={120} />
                       </div>
                     </div>
                     <div>

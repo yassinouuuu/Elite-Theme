@@ -10,13 +10,13 @@ const SEOHead = ({
   description, 
   keywords = '', 
   canonicalPath = '/', 
-  ogImage = 'https://elitetheme.dev/elite.png',
+  ogImage = 'https://themejungle.dev/themejungle.png',
   ogType = 'website',
   jsonLd = null 
 }) => {
-  const baseUrl = 'https://elitetheme.dev';
+  const baseUrl = 'https://themejungle.dev';
   const fullUrl = `${baseUrl}${canonicalPath}`;
-  const fullTitle = title.includes('Elite Theme') ? title : `${title} | Elite Theme – Premium WordPress Themes`;
+  const fullTitle = title.includes('ThemeJungle') ? title : `${title} | ThemeJungle – Premium WordPress Themes`;
 
   useEffect(() => {
     // Title

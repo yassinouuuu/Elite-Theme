@@ -16,12 +16,12 @@ const Themes = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Premium WordPress Themes Collection – Elite Theme",
+    "name": "Premium WordPress Themes Collection – ThemeJungle",
     "description": "Browse our complete collection of premium WordPress themes and templates. Professional WooCommerce, Elementor-compatible themes for e-commerce, business, and media websites.",
-    "url": "https://elitetheme.dev/themes",
+    "url": "https://themejungle.dev/themes",
     "publisher": {
       "@type": "Organization",
-      "name": "Elite Theme"
+      "name": "ThemeJungle"
     },
     "mainEntity": {
       "@type": "ItemList",
@@ -34,7 +34,7 @@ const Themes = () => {
           "name": theme.title,
           "description": theme.description,
           "image": theme.image,
-          "url": `https://elitetheme.dev/theme/${theme.id}`,
+          "url": `https://themejungle.dev/theme/${theme.id}`,
           "operatingSystem": "WordPress",
           "applicationCategory": "WebApplication",
           "offers": {
@@ -159,7 +159,7 @@ const Themes = () => {
                 Whether you're building a <strong>professional e-commerce store</strong>, a <strong>corporate business website</strong>, a <strong>sports streaming platform</strong>, or a <strong>dropshipping business</strong>, our themes provide the perfect foundation. Every theme includes clean, optimized code that ensures <strong>fast page load times</strong>, excellent <strong>Core Web Vitals scores</strong>, and higher search engine rankings.
               </p>
               <p>
-                All themes are <strong>GPL licensed</strong>, fully documented, and come with professional support. Start building your dream WordPress website today with Elite Theme's premium collection.
+                All themes are <strong>GPL licensed</strong>, fully documented, and come with professional support. Start building your dream WordPress website today with ThemeJungle's premium collection.
               </p>
             </div>
           </div>
